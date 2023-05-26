@@ -1,1 +1,0 @@
-# coding-game-response
