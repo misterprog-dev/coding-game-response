@@ -216,3 +216,93 @@ public int findSmallestInterval(int[] numbers) {
     return smallestInterval;
 }
 ```
+
+### VI. Compter les caractères pour un mot
+
+<u>Problème :</u>
+
+```
+On vous donne un tableau de chaînes de caractères words et une chaîne de caractères chars.
+
+Une chaîne est bonne si elle peut être formée par les caractères de chars (chaque caractère ne peut être utilisé qu'une seule fois).
+
+Retournez la somme des longueurs de toutes les bonnes chaînes de caractères en mots.
+
+Exemple 1 :
+
+Entrée : words = ["cat", "bt", "hat", "tree"], chars = "atach"
+Sortie : 6
+Explication : Les chaînes qui peuvent être formées sont "cat" et "hat", la réponse est donc 3 + 3 = 6.
+
+Exemple 2 :
+
+Entrée : words = ["hello", "world", "leetcode"], chars = "welldonehoneyr"
+Résultat : 10
+Explication : Les chaînes qui peuvent être formées sont "hello" et "world", la réponse est donc 5 + 5 = 10.
+
+Contraintes :
+
+. 1 <= words.length <= 1000
+. 1 <= words[i].length, chars.length <= 100
+. les mots[i] et les caractères sont des lettres minuscules anglaises.
+```
+
+<u>Résolution :</u>
+
+```java
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+
+public static int countCharacters(String[] words, String chars) {
+    validateInput(words, chars);
+
+    Map<Character, Integer> charCountMap = getCharCount(chars);
+
+    int totalLength = 0;
+    for (String word : words) {
+        Map<Character, Integer> wordCount = new HashMap<>(charCountMap);
+        if (isValidWorld(word, wordCount)) {
+            totalLength += word.length();
+        }
+    }
+
+    return totalLength;
+}
+
+private Map<Character, Integer> getCharCount(String chars) {
+    Map<Character, Integer> charCountMap = new HashMap<>();
+    for (char c : chars.toCharArray()) {
+        charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+    }
+    return charCountMap;
+}
+
+
+private boolean isValidWorld(String word, Map<Character, Integer> wordCount) {
+    for (char c : word.toCharArray()) {
+        if (wordCount.containsKey(c) && wordCount.get(c) > 0) {
+            wordCount.put(c, wordCount.get(c) - 1);
+        } else {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+private void validateInput(String[] words, String chars) {
+    if (words.length < 1 || words.length > 1000) {
+        throw new IllegalArgumentException("Contrainte : 1 <= words.length <= 1000");
+    }
+
+    if (chars.length() > 100) {
+        throw new IllegalArgumentException("Contrainte : chars.length <= 100");
+    }
+
+    String smallString = Arrays.stream(words).min(Comparator.comparing(String::length)).get();
+    if (smallString.length() < 1) {
+        throw new IllegalArgumentException("Contrainte : 1 <= words[i].length");
+    }
+}
