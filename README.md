@@ -1,4 +1,4 @@
-# Réponses problèmes coding game
+# Résolution problèmes tests techniques
 
 ### I. Trouver la Paire idéale
 
@@ -139,5 +139,37 @@ public String makeChange(int prix) {
             .append(currency5).append(", ")
             .append(currency2).append(", ")
             .append(currency1).toString();
+}
+```
+
+<br>
+
+### IV. Entier plus proche de zéro
+
+<u>Problème :</u>
+
+```
+J'ai un tableau d'entiers et je dois trouver celui qui est le plus proche de zéro les entiers positifs sont prioritaire sur les négatifs.
+```
+
+<u>Résolution :</u>
+
+```java
+public int findClosestToZero(int[] numbers) {
+    if (numbers.length == 0) {
+        throw new IllegalArgumentException("Le tableau ne doit pas être vide.");
+    }
+
+    int closest = numbers[0];
+
+    for (int i = 1; i < numbers.length; i++) {
+        int current = numbers[i];
+
+        if (Math.abs(current) < Math.abs(closest) || (Math.abs(current) == Math.abs(closest) && current > 0)) {
+            closest = current;
+        }
+    }
+
+    return closest;
 }
 ```
