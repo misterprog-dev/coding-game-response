@@ -444,3 +444,134 @@ public Node searchNode (Node node, int searchValue) {
     return null;
 }
 ```
+
+### VIII. Récupérer position final dans un labyrinthe
+
+<u>Problème 1er :</u>
+
+```
+- La position initiale du personnage est (X=0, Y=0)
+- width, height représente la surface (les limites)
+- portalA l'obstacle A
+- portalB l'obstacle B
+- movements représente les mouvements de notre objet.
+Avec les commandes (U: avancer, D: reculer, L: Aller à gauche, R: Aller à droite)
+    
+```
+
+<u>Résolution :</u>
+
+```java
+import java.util.List;
+
+
+public record Area(int width, int height) {}
+
+-------------------------------------------------------------
+
+public class Person {
+    Position position;
+    Area area;
+    List<int[]> obstacles;
+
+    public Person(Position position, Area area, List<int[]> obstacles) {
+        this.position = position;
+        this.area = area;
+        this.obstacles = obstacles;
+    }
+
+    public void forward() {
+        Position newPosition = position.moveForward("U");
+        updateCurrentPosition(newPosition);
+    }
+
+    private void updateCurrentPosition(Position newPosition) {
+        if (newPosition.isOnArea(area)) {
+            position = newPosition;
+        }
+    }
+
+    public void backward() {
+        if (isNotInPortals(new Position(position.x(), position.y() - 1))) {
+            position = new Position(position.x(), position.y() - 1);
+        }
+    }
+
+    public void goToRight() {
+        if (isNotInPortals(new Position(position.x() + 1, position.y()))) {
+            position = new Position(position.x() + 1, position.y());
+        }
+    }
+
+    public void goToLeft() {
+        if (isNotInPortals(new Position(position.x() - 1, position.y()))) {
+            position = new Position(position.x() - 1, position.y());
+        }
+    }
+
+    public String displayFinalPosition() {
+        return "(" + position.x() + " , " + position.y() + ")";
+    }
+
+    private boolean isNotInPortals(Position newPostion) {
+        for (int[] obstacle: obstacles) {
+            if (newPostion.x() != obstacle[0] && newPostion.y() != obstacle[1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+-------------------------------------------------------------
+
+public record Position(int x, int y) {
+    Position moveForward(String direction) {
+        return switch (direction) {
+            case "U" -> new Position(x, y + 1);
+            case "D" -> new Position(x, y - 1);
+            case "L" -> new Position(x + 1, y);
+            case "R" -> new Position(x - 1, y);
+        };
+    }
+
+    public Position moveBackward(String direction) {
+        return switch (direction) {
+            case "U" -> new Position(x, y - 1);
+            case "D" -> new Position(x, y + 1);
+            case "L" -> new Position(x - 1, y);
+            case "R" -> new Position(x + 1, y);
+        };
+    }
+
+    public boolean isOnArea(Area area) {
+        return y <= area.height() && y >= 0 && x <= area.width() && x >= 0;
+    }
+}
+
+-------------------------------------------------------------
+
+
+private String finalPositions(int width, int height, int[] portalA, int[] portalB, String movements) {
+    Person person = new Person(new Position(0, 0), new Area(width, height), List.of(portalA, portalB));
+    String[] commands = movements.split("");
+
+    for (String command : commands) {
+        move(person, command);
+    }
+
+    return person.displayFinalPosition();
+}
+
+ private static void move(Person person, String command) {
+    switch (command) {
+        case "U" -> person.forward();
+        case "D" -> person.backward();
+        case "L" -> person.goToLeft();
+        case "R" -> person.goToRight();
+    }
+}
+
+
+
+```
