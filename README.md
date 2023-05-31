@@ -173,3 +173,46 @@ public int findClosestToZero(int[] numbers) {
     return closest;
 }
 ```
+
+<br>
+
+### V. Trouver le plus petit intervalle
+
+<u>Problème :</u>
+
+```
+Implémenter la méthode findSmallestInterval(numbers) qui retourne le plus petit intervalle positif entre 2 éléments du tableau numbers(numbers est en fait un array de type int).
+Par exemple: si je considère le tableau [1 6 4 8 2],le plus petit
+intervalle est 1(différence entre 2 et 1).
+
+Les contraintes:
+1- Numbers contient au moins 2 éléments et au maximum 100000 éléments.
+2- La solution qui privilégie la vitesse d'execution pour les tableaux
+de grande taille obtiendra le plus de points.
+3- La différence entre 2 éléments ne dépassera jamais la capacité d'un entier pour votre langage.
+```
+
+<u>Résolution :</u>
+
+```java
+import java.util.Arrays;
+
+public int findSmallestInterval(int[] numbers) {
+    if (numbers.length < 2 || numbers.length > 100000) {
+        throw new IllegalArgumentException("Le tableau doit contenir entre 2 et 100000 éléments.");
+    }
+
+    Arrays.sort(numbers);
+    int smallestInterval = Integer.MAX_VALUE;
+
+    for (int i = 0; i < numbers.length - 1; i++) {
+        int currentInterval = numbers[i + 1] - numbers[i];
+
+        if (currentInterval < smallestInterval && currentInterval > 0) {
+            smallestInterval = currentInterval;
+        }
+    }
+
+    return smallestInterval;
+}
+```
