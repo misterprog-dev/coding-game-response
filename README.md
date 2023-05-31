@@ -216,6 +216,7 @@ public int findSmallestInterval(int[] numbers) {
     return smallestInterval;
 }
 ```
+<br>
 
 ### VI. Compter les caractères pour un mot
 
@@ -306,3 +307,140 @@ private void validateInput(String[] words, String chars) {
         throw new IllegalArgumentException("Contrainte : 1 <= words[i].length");
     }
 }
+```
+<br>
+
+### VII. Trouver le noeud suivant :
+
+<u>Problème 1er cas recherche à partir d'un noeud :</u>
+
+```
+Trouver le nœud suivant au même niveau que le nœud donné dans un arbre binaire
+
+Étant donné un arbre binaire et un nœud dedans, écrivez un algorithme efficace pour trouver son prochain nœud au même niveau que le nœud.
+
+Par exemple, considérons l'arbre binaire suivant :
+
+              1
+            /  \
+           /    \
+          2      3
+         / \      \
+        4   5      6
+                  / \
+                 7   8
+    
+```
+
+<u>Résolution :</u>
+
+```java
+public class Node {
+    private Node left = null;
+    private Node right = null;
+    private int value;
+
+    public Node(int value) {
+        this.value = value;
+    }
+
+    public static Node findRightNode(Node root, Node node){
+        if (root == null) {
+            return null;
+        }
+
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        Node currentNode;
+
+        while(!queue.isEmpty()) {
+            int queueSize = queue.size();
+            while (queueSize-- > 0)
+            {
+                currentNode = queue.poll();
+
+                if (currentNode == node)
+                {
+                    if (queueSize == 0) {
+                        return null;
+                    }
+                    return queue.peek();
+                }
+
+                if (currentNode.left != null) {
+                    queue.add(currentNode.left);
+                }
+
+                if (currentNode.right != null) {
+                    queue.add(currentNode.right);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public Node getLeft() {
+        return left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public void setLeft(Node left) {
+        this.left = left;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+    }
+}
+```
+
+<u>Problème 2ème cas recherche à partir d'une valeur :</u>
+
+```
+Notre arbre binaire est construite de sorte que depuis la root, les valeurs inférieures à la route se trouvent à gauche et les valeurs supérieures se trouvent à droite. Nous répétons cette opération sur chaque noeud.
+
+Par exemple, considérons l'arbre binaire suivant :
+
+              8
+            /  \
+           /    \
+          5      10
+         / \      \
+        4   6      11
+       /           / \
+      3          10  12
+    
+```
+
+<u>Résolution :</u>
+
+```java
+public Node searchNode (Node node, int searchValue) {
+    if (node == null) {
+        return null;
+    }
+
+
+    if (node.getValue() == searchValue) {
+        return node;
+    }
+
+    if (node.getValue() < searchValue) {
+        return searchNode(node.getRight(), searchValue);
+    }
+
+    if (node.getValue() > searchValue) {
+        return searchNode(node.getLeft(), searchValue);
+    }
+
+    return null;
+}
+```
