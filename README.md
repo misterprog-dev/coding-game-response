@@ -1,6 +1,7 @@
 # Réponses problèmes coding game
 
 ### I. Trouver la Paire idéale
+
 <u>Problème :</u>
 ```
 On souhaite retourne une paire de nombres (numbers) dans un tableau dont la somme est donnée(sum)
@@ -29,5 +30,26 @@ public int[] findSumPair(int[] numbers, int sum) {
       }
 
       return pair;
+}
+```
+
+<br>
+
+### II. Trouver le duo digit
+
+<u>Problème :</u>
+```
+Je veux implémenter une fonction pour vérifier si un nombre donné contient plus de deux chiffres différents, 
+que l'on appelle des duodigits :
+1- 12 , 110 , -33333 : sont tous des duodigits , puisqu'ils n'ont pas plus de deux chiffres différents 
+2- 102 : n'est pas un duodigit puisque ses chiffres ; 1 et 0 et 2 sont trois chiffres différents
+```
+
+<u>Résolution :</u>
+
+```java
+public boolean isDuoDigit(long number) {
+  String numberString = String.valueOf(Math.abs(number));
+  return (int) numberString.chars().distinct().count() <= 2;
 }
 ```
