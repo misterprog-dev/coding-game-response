@@ -464,8 +464,8 @@ Par exemple, considérons l'arbre binaire suivant :
 <u>Résolution :</u>
 
 ```java
-public Nope find(int v) {
-    Nope current = this;
+public Node find(int v) {
+    Node current = this;
 
     while (current != null) {
         if (current.value == v) {
@@ -473,7 +473,7 @@ public Nope find(int v) {
         }
         current = v < current.value ? current.left : current.right;
     }
-    
+
     return null;
 }
 
