@@ -443,7 +443,42 @@ public Node searchNode (Node node, int searchValue) {
 
     return null;
 }
+````
+
+<u>Problème 3ème cas recherche à partir d'une valeur sans noeud précisé :</u>
+
 ```
+Par exemple, considérons l'arbre binaire suivant :
+
+              8
+            /  \
+           /    \
+          5      10
+         / \      \
+        4   6      11
+       /           / \
+      3          10  12
+    
+```
+
+<u>Résolution :</u>
+
+```java
+public Nope find(int v) {
+    Nope current = this;
+
+    while (current != null) {
+        if (current.value == v) {
+            return current;
+        }
+        current = v < current.value ? current.left : current.right;
+    }
+    
+    return null;
+}
+
+```
+
 
 ### VIII. Récupérer position final dans un labyrinthe
 
