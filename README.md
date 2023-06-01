@@ -481,7 +481,7 @@ public Node find(int v) {
 
 ### VIII. Trouver les trois actions dont le coût moyen est le plus élévé
 
-<u>Problème 1er :</u>
+<u>Problème :</u>
 
 ```
 Dans ce problème, on vous donne les prix quotidiens de certaines actions et on vous demande de trouver les trois actions dont le coût moyen est le plus élevé.
@@ -543,7 +543,57 @@ private List<String> retrieveTopStocks(List<Entry<String, Double>> sortedStocks)
 
 <br>
 
-### VIII. Récupérer position final dans un labyrinthe
+### IX.  Identifier une chaîne de caractère correcte composée de parenthèse () et de crochets []
+
+<u>Problème :</u>
+
+```
+Cet exercice consiste à identifier une chaîne de caractère correcte composée de parenthèse () et de crochets []. Une chaîne de ce type est considérée comme correcte:
+
+1- si c'est une chaîne vide ou null
+2- si la chaîne A est correcte, (A) et [A] sont correctes
+3- si les chaînes A et B sont correcte, la concaténation AB est également correcte
+
+La chaîne contient au plus 10000 caractères
+
+Exemple: [()] est correcte, (()[]) est correcte, ([)] n'est pas correcte, (( n'est pas correcte.
+```
+
+<u>Résolution :</u>
+
+```java
+import java.util.Stack;
+
+public boolean isCorrectString(String s) {
+    if (s == null || s.isEmpty()) {
+        return true;
+    }
+
+    Stack<Character> stack = new Stack<>();
+
+    for (char c : s.toCharArray()) {
+        if (c == '(' || c == '[') {
+            stack.push(c);
+        } else if (c == ')' || c == ']') {
+            if (stack.isEmpty()) {
+                return false;
+            }
+
+            char top = stack.pop();
+
+            if ((c == ')' && top != '(') || (c == ']' && top != '[')) {
+                return false;
+            }
+        }
+    }
+
+    return stack.isEmpty();
+}
+```
+
+<br>
+
+### X. Récupérer position final dans un labyrinthe
 
 <u>Problème 1er :</u>
 
