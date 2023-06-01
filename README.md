@@ -711,6 +711,18 @@ private boolean areAllDigitsDifferent(char[] digits1, char[] digits2) {
 }
 ```
 
+### XIII.  Calculer le point de jonction
+
+<u>Problème :</u>
+
+```
+
+```
+
+<u>Résolution :</u>
+
+```java
+
 <br>
 
 ### XI. Récupérer position final dans un labyrinthe
