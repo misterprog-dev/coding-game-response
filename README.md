@@ -591,9 +591,129 @@ public boolean isCorrectString(String s) {
 }
 ```
 
+### X.  Calcul du prix total avec discount
+
+<u>Problème :</u>
+
+```
+Vous travaillez pour un magasin qui souhaite offrir une réduction de "discount%" sur le produit le plus cher acheté par un client donné pendant la période des soldes.
+Le responsable du magasin vous demande de développer la méthode calculateTotalPrice().
+
+Cette méthode:
+
+1- prend en paramètres la liste de prix des produits achetés par le client et le pourcentage de réduction "discount".
+
+2-retourne le prix de vente total (arrondi à l'entier inférieur si le total ne tombe pas rond).
+
+Contraintes:
+-    0=<"discount"<=100
+-    0=<prix d'un produit <100000
+-    0<nombre de produits<100
+```
+
+<u>Résolution :</u>
+
+```java
+
+
+```
+
 <br>
 
-### X. Récupérer position final dans un labyrinthe
+### XI.  Calcul du prix total avec discount
+
+<u>Problème :</u>
+
+```
+On donne un liste de valeurs vérifier l'existance de k dans la liste.
+Si k existe retourner true.
+```
+
+<u>Résolution :</u>
+
+```java
+import java.util.Arrays;
+
+boolean exists(int[] ints, int k) {
+    if (ints.length == 0) {
+        return false;
+    }
+    return Arrays.binarySearch(ints, k) >= 0;
+}
+```
+
+<br>
+
+### XII.  Trouver l'entier n en convertissant l'entier n en une liste de chiffres
+
+<u>Problème :</u>
+
+```
+Cette méthode commence par convertir l'entier n en une liste de chiffres. 
+
+Ensuite, elle vérifie si tous les chiffres sont identiques en utilisant un ensemble pour éliminer les doublons. 
+
+Si tous les chiffres sont identiques, la méthode retourne -1.
+
+Si tous les chiffres ne sont pas identiques, la méthode entre dans une boucle où elle incrémente progressivement n d'une unité à chaque itération. 
+
+À chaque itération, elle convertit le nouvel entier n en une liste de chiffres et vérifie si tous les chiffres sont différents en utilisant un ensemble. 
+
+Si tous les chiffres sont différents, la méthode retourne cet entier n.
+
+Notez que cette méthode fonctionne pour des entiers strictement positifs inférieurs à 2^31, comme spécifié dans la question.
+```
+
+<u>Résolution :</u>
+
+```java
+import java.util.HashSet;
+
+public int next(int n) {
+    char[] digits = String.valueOf(n).toCharArray();
+
+    if (isAllDigitsSame(digits)) {
+        return -1;
+    }
+
+    while (true) {
+        n++;
+        char[] newDigits = String.valueOf(n).toCharArray();
+        if (areAllDigitsDifferent(digits, newDigits)) {
+            return n;
+        }
+    }
+}
+
+private boolean isAllDigitsSame(char[] digits) {
+    for (int i = 1; i < digits.length; i++) {
+        if (digits[i] != digits[0]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+private boolean areAllDigitsDifferent(char[] digits1, char[] digits2) {
+    HashSet<Character> digitSet = new HashSet<>();
+
+    for (char digit : digits1) {
+        digitSet.add(digit);
+    }
+
+    for (char digit : digits2) {
+        if (digitSet.contains(digit)) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+```
+
+<br>
+
+### XI. Récupérer position final dans un labyrinthe
 
 <u>Problème 1er :</u>
 
