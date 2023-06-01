@@ -715,13 +715,34 @@ private boolean areAllDigitsDifferent(char[] digits1, char[] digits2) {
 
 <u>Problème :</u>
 
-```
 
-```
+![Alt Image](probleme1.png)
+
 
 <u>Résolution :</u>
 
 ```java
+public int computeJoinPoint(int s1, int s2) {
+    while (s1 != s2) {
+        s1 += sumDigits(s1);
+        s2 += sumDigits(s2);
+    }
+
+    return s1;
+}
+
+private int sumDigits(int number) {
+    int sum = 0;
+
+    while (number != 0) {
+        int digit = number % 10;
+        sum += digit;
+        number /= 10;
+    }
+
+    return sum;
+}
+```
 
 <br>
 
