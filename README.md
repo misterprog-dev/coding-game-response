@@ -479,6 +479,69 @@ public Node find(int v) {
 
 ```
 
+### VIII. Trouver les trois actions dont le coût moyen est le plus élévé
+
+<u>Problème 1er :</u>
+
+```
+Dans ce problème, on vous donne les prix quotidiens de certaines actions et on vous demande de trouver les trois actions dont le coût moyen est le plus élevé.
+
+Implémentez la méthode getTopStocks(stocks, prices) qui prend comme entrée:
+
+1- un tableau de chaînes de caractères (stocks), représentant les actions considérées.
+
+2- un tableau de 2 dimensions (prices), représentant les prix des actions (listes intérieures) pour chaque jour (liste extérieure).
+    
+```
+
+<u>Résolution :</u>
+
+```java
+public List<String> getTopStocks(String[] stocks, int[][] prices) {
+    Map<String, Double> stockAverages = getStockAverages(stocks, prices);
+    List<Entry<String, Double>> sortedStocks = sortStockAverages(stockAverages);
+    List<String> topStocks = retrieveTopStocks(sortedStocks);
+
+    return topStocks;
+}
+
+private Map<String, Double> getStockAverages(String[] stocks, int[][] prices) {
+    Map<String, Double> stockAverages = new HashMap<>();
+
+    for (int i = 0; i < stocks.length; i++) {
+        stockAverages.put(stocks[i], calculateAverage(prices[i]));
+    }
+
+    return stockAverages;
+}
+
+private double calculateAverage(int[] prices) {
+    int sum = 0;
+    for (int price : prices) {
+        sum += price;
+    }
+    return (double) sum / prices.length;
+}
+
+private List<Entry<String, Double>> sortStockAverages(Map<String, Double> stockAverages) {
+    List<Entry<String, Double>> sortedStocks = new ArrayList<>(stockAverages.entrySet());
+    sort(sortedStocks, (a, b) -> b.getValue().compareTo(a.getValue()));
+    return sortedStocks;
+}
+
+private List<String> retrieveTopStocks(List<Entry<String, Double>> sortedStocks) {
+    List<String> topStocks = new ArrayList<>();
+
+    for (int i = 0; i < Math.min(3, sortedStocks.size()); i++) {
+        topStocks.add(sortedStocks.get(i).getKey());
+    }
+
+    return topStocks;
+}
+
+```
+
+<br>
 
 ### VIII. Récupérer position final dans un labyrinthe
 
