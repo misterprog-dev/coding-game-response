@@ -746,7 +746,89 @@ private int sumDigits(int number) {
 
 <br>
 
-### XI. Récupérer position final dans un labyrinthe
+### XIV.  NetWork endPoint
+
+<u>Problème :</u>
+
+Programme Java permettant de trouver le nœud terminal d'un réseau simple.
+
+Le but de ce programme est de trouver le nœud terminal d'un réseau simple.
+
+Dans ce réseau simple, chaque noeud est lié à au moins un noeud sortant de manière unidirectionnelle.
+
+La méthode ''findNetworkEndpoint(startNodeId, fromIds, toIds) renvoie l'identifiant du dernier noeud du réseau trouvé en partant du noeud ''startNodeId'' et en suivant les liens du réseau.
+
+''fromIds'' et ''toIds'' sont deux tableaux de même longueur décrivant les liens unidirectionnels du réseau. (''fromIds[i] est lié à toIds[i]).
+
+Dans le cas où le programme trouve une boucle lors de l'exécution du réseau, la méthode renvoie l'identifiant du dernier noeud traversé avant de fermer la boucle.
+
+<br>
+
+<u>Résolution :</u>
+
+```java
+public class NetworkEnpoint {
+
+    static HashMap<String, NetworkEnpoint> nodes = new HashMap<>();
+    int nodeIndex;
+    NetworkEnpoint nextNode;
+
+    public int getNodeIndex() {
+        return this.nodeIndex;
+    }
+
+    public void setNodeIndex(int nodeIndex) {
+        this.nodeIndex = nodeIndex;
+    }
+
+    public NetworkEnpoint getNextNode() {
+        return this.nextNode;
+    }
+
+    public void setNextNode(NetworkEnpoint nextNode) {
+        this.nextNode = nextNode;
+    }
+
+    public static int findNetworkEndpoint(int startNodeId, int[] fromIds, int[] toIds) {
+        for (Integer fromId : fromIds) {
+            if (nodes.get(String.valueOf(fromId)) == null && fromId != null) {
+                NetworkEnpoint node = new NetworkEnpoint();
+                node.setNodeIndex(fromId);
+                nodes.put(String.valueOf(fromId), node);
+            }
+        }
+
+        for (Integer toId : toIds) {
+            if (nodes.get(String.valueOf(toId)) == null && toId != null) {
+                NetworkEnpoint node = new NetworkEnpoint();
+                node.setNodeIndex(toId);
+                nodes.put(String.valueOf(toId), node);
+            }
+        }
+
+        int i = 0;
+        for (Integer fromId : fromIds) {
+            if (toIds[i] != 0) {
+                nodes.get(String.valueOf(fromId)).setNextNode(nodes.get(String.valueOf(toIds[i])));
+            }
+            i++;
+        }
+
+        NetworkEnpoint finalNode = nodes.get(String.valueOf(startNodeId));
+        while (finalNode.getNextNode() != null) {
+            if (finalNode.getNextNode() != null
+                    && finalNode.getNextNode().getNodeIndex() == startNodeId) {
+                break;
+            }
+            finalNode = finalNode.getNextNode();
+        }
+
+        return finalNode.getNodeIndex();
+    }
+}
+```
+
+### XV. Récupérer position final dans un labyrinthe
 
 <u>Problème 1er :</u>
 
