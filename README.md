@@ -828,7 +828,47 @@ public class NetworkEnpoint {
 }
 ```
 
-### XV. Récupérer position final dans un labyrinthe
+### XV. Retourne le caractère associé à la représentation graphique fournie par AsciiArt.printCHar
+
+<u>Problème:</u>
+
+```
+AsciiArt.printChar permet d'afficher un et un seul caractère ASCII de A à Z (inclusif) sur plusieurs lignes et colonnes.
+
+On souhaite maintenant faire l'opération contraire dans l'autre sens: obtenir un caractère à partir de sa répresentation graphique.
+
+Implémentez la méthode scanChar(String s) afin qu'elle retourne le caractère associé à la représentation graphique fournie par AsciiArt.printCHar(char c). 
+
+Si s ne correspond pas à un caractère en A et Z (inclusif), alors scanCHar devra retourner le caractère '?'
+    
+```
+
+<u>Résolution :</u>
+
+```java
+char scanChar(String s) {
+    boolean charFound = false;
+    char lettre = '?';
+    
+    for (char i = 'A'; i <= 'Z'; i++) {
+        if (s.equals(printChar(i))) {
+            charFound = true;
+            lettre = i;
+        }
+    }
+    
+    return lettre;
+}
+
+private String printChar(char lettre) {
+    return String.valueOf(lettre);
+}
+
+```
+
+<br>
+
+### XVI. Récupérer position final dans un labyrinthe
 
 <u>Problème 1er :</u>
 
