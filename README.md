@@ -868,7 +868,46 @@ private String printChar(char lettre) {
 
 <br>
 
-### XVI. Récupérer position final dans un labyrinthe
+### XV. Rechercher la plage de mois consécutifs qui a enregistré le plus de bénéfices
+
+<u>Problème:</u>
+```
+On vous donne une liste d'entiers, qui réprésentent les bénéfices nets mensuels d'une entreprise. L'entreprise souhaite que vous trouviez la plage de mois consécutifs qui a enregistré le plus de bénéfices
+```
+
+<u>Résolution :</u>
+
+```java
+public static int[] findMaximumProfitRange(int[] profits) {
+    int maxProfit = Integer.MIN_VALUE;
+    int currentProfit = 0;
+    int startMonth = 0;
+    int endMonth = 0;
+    int currentStartMonth = 0;
+    
+    for (int i = 0; i < profits.length; i++) {
+        currentProfit += profits[i];
+        
+        if (currentProfit > maxProfit) {
+            maxProfit = currentProfit;
+            startMonth = currentStartMonth;
+            endMonth = i;
+        }
+        
+        if (currentProfit < 0) {
+            currentProfit = 0;
+            currentStartMonth = i + 1;
+        }
+    }
+    
+    return {startMonth + 1, endMonth + 1, maxProfit};
+}
+
+```
+
+<br>
+
+### XVII. Récupérer position final dans un labyrinthe
 
 <u>Problème 1er :</u>
 
