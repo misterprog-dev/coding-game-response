@@ -1034,6 +1034,23 @@ private String finalPositions(int width, int height, int[] portalA, int[] portal
     }
 }
 
+```
+
+<br>
+
+### XVII. Angular : Détails Transaction
+
+<u>Problème 1er :</u>
 
 
+TransactionDetailsComponent
+
+![Alt Image](DetailComponent.PNG)
+    
+
+<u>Résolution :</u>
+```
+<div id="amount">{{ amount | currency: currency:'symbol':'9.2-2' }}</div>
+<div id="fee">{{ fee | number | percent: '2.2-3' }}</div>
+<div id="time">{{ timeOfTransaction | date:'ww:yyyy MMMMM dd hh-mm-ss' }}</div>
 ```
