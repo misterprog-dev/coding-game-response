@@ -1087,6 +1087,7 @@ function formatBytes(bytes: number): string {
 }
 ```
 <br>
+
 ### XIX. Calculer du rectangle englobant
 
 <u>Problème 1er :</u>
