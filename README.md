@@ -1054,3 +1054,35 @@ TransactionDetailsComponent
 <div id="fee">{{ fee | number | percent: '2.2-3' }}</div>
 <div id="time">{{ timeOfTransaction | date:'ww:yyyy MMMMM dd hh-mm-ss' }}</div>
 ```
+
+<br>
+
+### XVIII. formatter les Bytes
+
+<u>Problème 1er :</u>
+```
+Pour éviter la confusion entre les multiples de 1000 octets et les multiples de 1024 octets, les termes "kibioctet", "mébioctet", etc. ont été inventés.
+- un kilooctet correspond à 1024 octets
+- un mébioctet correspond à (1024 * 1024) octets
+
+Etant donnée une quantité d'octets:
+- Si elle est inférieure à un kibioctet, renvoyer la sous-forme d'une chaine de caractère
+- Si elle est comprise entre un KiB (inclus) et un MiB (exclu), convertissez la en KiB, arrondissez à l'unité inférieure et renvoyer la suivie d'un espace et du texte KiB
+- Si elle est supérieure ou à égale à un MiB, convertissez la en MiB, arrondissez la à l'unité inférieures et renvoyez la suivie d'un espace et du texte MiB
+```
+<br>
+
+<u>Résolution :</u>
+```ts
+function formatBytes(bytes: number): string {
+    if (bytes < 1024) {
+        return bytes + " octets";
+    } else if (bytes < 1024 * 1024) {
+        const kibibytes = Math.floor(bytes / 1024);
+        return kibibytes + " KiB";
+    } else {
+        const mebibytes = Math.floor(bytes / (1024 * 1024));
+        return mebibytes + " MiB";
+    }
+}
+```
