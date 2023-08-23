@@ -1086,3 +1086,42 @@ function formatBytes(bytes: number): string {
     }
 }
 ```
+<br>
+### XIX. Calculer du rectangle englobant
+
+<u>Problème 1er :</u>
+```
+Vous devez calculer un rectangle englobant, c'est à dire le rectangle contenant un ensemble de points données, dans un espace en 2 dimensions.
+Vous recevez en paramètre un tableau de nombres entiers, contenant au moins 2 lignes. Chaque ligne contient 2 nombres répresentant les 2 coordonnées (x,y) d'un point.
+- Vous devez renvoyer un tableau parmi toutes les coordonnées x des points en paramètre
+- La plus petite valeur parmi toutes les coordonnées y des points données en paramètre
+- La largeur du rectangle, égale à la plus grande coordonnées x,  moins la plus petite des coordonnées x
+- la hauteur du rectangle : le plus grand y - le plus petit y
+```
+<br>
+
+<u>Résolution :</u>
+```ts
+function calculateBoundingRectangle(points: number[][]): number[] {
+    if (points.length < 2) {
+        throw new Error("At least 2 points are required");
+    }
+
+    let minX = points[0][0];
+    let minY = points[0][1];
+    let maxX = points[0][0];
+    let maxY = points[0][1];
+
+    for (const [x, y] of points) {
+        minX = Math.min(minX, x);
+        minY = Math.min(minY, y);
+        maxX = Math.max(maxX, x);
+        maxY = Math.max(maxY, y);
+    }
+
+    const width = maxX - minX;
+    const height = maxY - minY;
+
+    return [minX, minY, width, height];
+}
+```
