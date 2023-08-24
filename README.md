@@ -614,8 +614,20 @@ Contraintes:
 <u>Résolution :</u>
 
 ```java
+public int calculateTotalPrice(int[] prices, int discount) {
+  if (discount < 0 || discount > 100) {
+      throw new IllegalArgumentException("Discount percentage must be between 0 and 100");
+  }
 
+  int total = 0;
+  for(int price : prices) {
+      total= total + price;
+  }
 
+  int maxPrice = Arrays.stream(prices).max().getAsInt();
+
+  return (int) (((total - maxPrice) + (float)(maxPrice -(maxPrice * discount/100d))));
+}
 ```
 
 <br>
