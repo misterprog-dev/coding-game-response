@@ -632,7 +632,7 @@ public int calculateTotalPrice(int[] prices, int discount) {
 
 <br>
 
-### XI.  Calcul du prix total avec discount
+### XI.  Vérifier existence nombre dans une liste
 
 <u>Problème :</u>
 
