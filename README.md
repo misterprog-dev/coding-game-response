@@ -33,7 +33,7 @@ public int[] findSumPair(int[] numbers, int sum) {
 }
 ```
 
-<br>
+<br/>
 
 ### II. Trouver le duo digit
 
@@ -54,7 +54,7 @@ public boolean isDuoDigit(long number) {
 }
 ```
 
-<br>
+<br/>
 
 ### III. Calcul de currencys Version 1
 
@@ -106,7 +106,7 @@ public String makeChange(int prix, int x20, int x10, int x5, int x2, int x1) {
 }
 ```
 
-<br>
+<br/>
 
 ### III. Calcul de currencys Version 2
 
@@ -142,7 +142,7 @@ public String makeChange(int prix) {
 }
 ```
 
-<br>
+<br/>
 
 ### IV. Entier plus proche de zéro
 
@@ -174,7 +174,7 @@ public int findClosestToZero(int[] numbers) {
 }
 ```
 
-<br>
+<br/>
 
 ### V. Trouver le plus petit intervalle
 
@@ -216,7 +216,7 @@ public int findSmallestInterval(int[] numbers) {
     return smallestInterval;
 }
 ```
-<br>
+<br/>
 
 ### VI. Compter les caractères pour un mot
 
@@ -308,7 +308,7 @@ private void validateInput(String[] words, String chars) {
     }
 }
 ```
-<br>
+<br/>
 
 ### VII. Trouver le noeud suivant :
 
@@ -541,7 +541,7 @@ private List<String> retrieveTopStocks(List<Entry<String, Double>> sortedStocks)
 
 ```
 
-<br>
+<br/>
 
 ### IX.  Identifier une chaîne de caractère correcte composée de parenthèse () et de crochets []
 
@@ -630,7 +630,7 @@ public int calculateTotalPrice(int[] prices, int discount) {
 }
 ```
 
-<br>
+<br/>
 
 ### XI.  Vérifier existence nombre dans une liste
 
@@ -654,7 +654,7 @@ boolean exists(int[] ints, int k) {
 }
 ```
 
-<br>
+<br/>
 
 ### XII.  Trouver l'entier n en convertissant l'entier n en une liste de chiffres
 
@@ -756,7 +756,7 @@ private int sumDigits(int number) {
 }
 ```
 
-<br>
+<br/>
 
 ### XIV.  NetWork endPoint
 
@@ -774,7 +774,7 @@ La méthode ''findNetworkEndpoint(startNodeId, fromIds, toIds) renvoie l'identif
 
 Dans le cas où le programme trouve une boucle lors de l'exécution du réseau, la méthode renvoie l'identifiant du dernier noeud traversé avant de fermer la boucle.
 
-<br>
+<br/>
 
 <u>Résolution :</u>
 
@@ -878,7 +878,7 @@ private String printChar(char lettre) {
 
 ```
 
-<br>
+<br/>
 
 ### XV. Rechercher la plage de mois consécutifs qui a enregistré le plus de bénéfices
 
@@ -917,7 +917,7 @@ public static int[] findMaximumProfitRange(int[] profits) {
 
 ```
 
-<br>
+<br/>
 
 ### XVII. Récupérer position final dans un labyrinthe
 
@@ -1048,7 +1048,7 @@ private String finalPositions(int width, int height, int[] portalA, int[] portal
 
 ```
 
-<br>
+<br/>
 
 ### XVII. Angular : Détails Transaction
 
@@ -1067,7 +1067,7 @@ TransactionDetailsComponent
 <div id="time">{{ timeOfTransaction | date:'ww:yyyy MMMMM dd hh-mm-ss' }}</div>
 ```
 
-<br>
+<br/>
 
 ### XVIII. formatter les Bytes
 
@@ -1082,7 +1082,7 @@ Etant donnée une quantité d'octets:
 - Si elle est comprise entre un KiB (inclus) et un MiB (exclu), convertissez la en KiB, arrondissez à l'unité inférieure et renvoyer la suivie d'un espace et du texte KiB
 - Si elle est supérieure ou à égale à un MiB, convertissez la en MiB, arrondissez la à l'unité inférieures et renvoyez la suivie d'un espace et du texte MiB
 ```
-<br>
+<br/>
 
 <u>Résolution :</u>
 ```ts
@@ -1098,7 +1098,7 @@ function formatBytes(bytes: number): string {
     }
 }
 ```
-<br>
+<br/>
 
 ### XIX. Calculer du rectangle englobant
 
@@ -1111,7 +1111,7 @@ Vous recevez en paramètre un tableau de nombres entiers, contenant au moins 2 l
 - La largeur du rectangle, égale à la plus grande coordonnées x,  moins la plus petite des coordonnées x
 - la hauteur du rectangle : le plus grand y - le plus petit y
 ```
-<br>
+<br/>
 
 <u>Résolution :</u>
 ```ts
@@ -1136,5 +1136,142 @@ function calculateBoundingRectangle(points: number[][]): number[] {
     const height = maxY - minY;
 
     return [minX, minY, width, height];
+}
+```
+<br/>
+
+### XX. Portails avec Avatar
+
+<u>Problème :</u>
+```
+Votre avatar de jeu évolue dans un monde étrange comportant deux portails interspatiaux et bidirectionnels. Écrivez un programme retournant les coordonnées de votre avatar compte tenu d'une série de déplacements et de l'emplacement des portails.
+
+Fonctionnement 
+Le terrain est représenté par une grille de width cases de large et de height cases de haut. La case en haut à gauche est située à (0, 0) où le premier entier représente la colonne et le second la ligne. Les positions initiales de votre avatar et des deux portails sont données par des tableaux de deux entiers position , portalA , et portalB . La série de déplacement, moves , est une chaîne composée des caractères U (haut), D (bas), R (droite), L (gauche).
+Si votre avatar marche vers une case comportant un portail, il se téléporte au portail associé (et il reste sur cette case cible tant qu'il n'effectue pas d'autre déplacement). S'il bute contre une extrémité du terrain, il n'avance pas et ne se téléporte pas.
+
+Implémentation
+Implémentez la méthode <b>computeFinalPosition(width, height, position, portalA, portalB, moves)</b> qui :
+prend en entrées les entiers width , height , les tableaux d'entiers position , portalA , portalB , et la chaîne de caractères moves avec : 0 < width < 20 0 < height < 20 0 <= nombre de caractères de moves <= 255 et retourne la position finale de votre avatar sous la forme d'un tableau de deux entiers.
+
+```
+<br/>
+
+<u>Résolution :</u>
+```java
+public static int[] computeFinalPosition(int width,
+                                             int height,
+                                             int[] position,
+                                             int[] portalA,
+                                             int[] portalB,
+                                             String moves) {
+        int[] avatarPosition = position.clone();
+
+        for (char move : moves.toCharArray()) {
+            int[] newPosition = getNextPosition(avatarPosition, move);
+
+            if (isValidPosition(newPosition, width, height)) {
+                if (isEqualPosition(newPosition, portalA)) {
+                    avatarPosition = portalB.clone();
+                } else if (isEqualPosition(newPosition, portalB)) {
+                    avatarPosition = portalA.clone();
+                } else {
+                    avatarPosition = newPosition.clone();
+                }
+            }
+        }
+
+        return avatarPosition;
+    }
+
+    private static int[] getNextPosition(int[] currentPosition, char move) {
+        int[] newPosition = currentPosition.clone();
+
+        switch (move) {
+            case 'U' -> newPosition[1]--;
+            case 'D' -> newPosition[1]++;
+            case 'L' -> newPosition[0]--;
+            case 'R' -> newPosition[0]++;
+        }
+
+        return newPosition;
+    }
+
+    private static boolean isValidPosition(int[] position, int width, int height) {
+        return position[0] >= 0 &&
+                position[0] < width &&
+                position[1] >= 0 &&
+                position[1] < height;
+    }
+
+    private static boolean isEqualPosition(int[] positionA, int[] positionB) {
+        return positionA[0] == positionB[0] && positionA[1] == positionB[1];
+    }
+
+    public static void main(String[] args) {
+        int width = 5;
+        int height = 5;
+        int[] position = {1, 1};
+        int[] portalA = {0, 2};
+        int[] portalB = {4, 2};
+        String moves = "URURD";
+
+        int[] finalPosition = computeFinalPosition(width, height, position, portalA, portalB, moves);
+        System.out.println("Final position : (" + finalPosition[0] + ", " + finalPosition[1] + ")");
+    }
+```
+
+<br/>
+
+<br/>
+
+### XXI. Déplacement d'atomes sur une grille
+
+<u>Problème :</u>
+```
+Règles
+Vous avez découvert d'anciens procédés alchimiques permettant de transmuter la matière. Vous pouvez ajouter ou retirer des protons et des neutrons à un atome. Votre atome est placé dans l'aire de jeu. L'axe des abscisses représente le nombres de protons et l'axe des ordonnées le nombre de neutrons. Vous devez lister les actions à effectuer afin que l'atome atteigne le nombre attendu de protons et de neutrons.
+Vous disposez des 3 actions prédéfinies suivantes :
+- PROTON : ajoute un proton à l'atome. Dans l'aire de jeu, cela équivaut à le déplacer d'une case vers la droite. 
+- NEUTRON : ajoute un neutron, déplace l'atome d'une case vers le bas. 
+- ALPHA : retire deux protons et deux neutrons par désintégration alpha, déplace l'atome de deux cases en diagonale vers la gauche et le haut.
+Vous devez renvoyer une liste de chaîne de caractère correspondant aux actions à effectuer. 
+Par exemple, si vous renvoyez une liste contenant les mots " ALPHA ", " PROTON ", " PROTON ", " PROTON ", l'atome perdra deux protons et deux neutrons, puis regagnera 3 protons.
+Au final, il se déplacera de deux cases vers le haut et une case vers la droite. L'ordre des actions n'a pas d'importance. 
+Il n'est pas obligatoire de minimiser le nombre d'actions. Votre atome peut être déplacé en dehors de la grille, y compris vers le haut et vers la gauche.
+
+Implémentation
+Implémentez la fonction solve(protonsStart, neutronsStart, protonsTarget, neutronsTarget).
+Cette fonction doit retourner une liste de chaînes de caractères :
+- les actions successives à effectuer pour passer de l'atome fourni à l'atome cible.
+- La fonction prend 4 paramètres d'entrée : protonsStart et neutronsStart représentent le nombre de protons et de neutrons de l'atome initial. protonsTarget et neutronsTarget représentent le nombre de protons et de neutrons de l'atome souhaité.
+```
+<br/>
+
+
+<u>Résolution :</u>
+```ts
+function solve(protonsStart: number, neutronsStart: number, protonsTarget: number, neutronsTarget: number): string[] {
+    const actions: string[] = [];
+    const protonDiff = protonsTarget - protonsStart;
+    const neutronDiff = neutronsTarget - neutronsStart;
+
+    for (let i = 0; i < Math.abs(protonDiff); i++) {
+        if (protonDiff > 0) {
+            actions.push("PROTON");
+        } else {
+            actions.push("ALPHA");
+        }
+    }
+    
+    for (let i = 0; i < Math.abs(neutronDiff); i++) {
+        if (neutronDiff > 0) {
+            actions.push("NEUTRON");
+        } else {
+            actions.push("ALPHA");
+        }
+    }
+
+    return actions;
 }
 ```
