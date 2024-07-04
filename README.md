@@ -1366,6 +1366,7 @@ Ecrire un programme qui retourne les entiers de 1 à 100. A prendre en compte: P
 
 Exemple: 12Fizz4BuzzFizz78FizzBuzz......Buzz
 Plus info:[Lien](https://example.com/ "FizzBuzz")
+[![Ceci est un exemple d’image](https://example.com/bild.jpg)](https://example.com)
 
 ```
 <br/>
