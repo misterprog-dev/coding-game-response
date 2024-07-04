@@ -1365,8 +1365,7 @@ Règles
 Ecrire un programme qui retourne les entiers de 1 à 100. A prendre en compte: Pour les multiples de 3, remplacez le nombre par "Fizz". Pour les multiples de 5, remplacez le nombre par "Buzz". Un nombre multiple de 15, remplacez le nombre par "FizzBuzz".
 
 Exemple: 12Fizz4BuzzFizz78FizzBuzz......Buzz
-Plus info:[Lien]([https://codingdojo.org/fr/kata/FizzBuzz](https://codingdojo.org/fr/kata/FizzBuzz/))
-![Alt Image](https://codingdojo.org/fr/kata/FizzBuzz/)
+Plus info:[texte à afficher](lien)
 
 ```
 <br/>
