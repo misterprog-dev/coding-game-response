@@ -1277,8 +1277,8 @@ function solve(protonsStart: number, neutronsStart: number, protonsTarget: numbe
 ```
 ### XXII. La monnaie à la caisse, les monnaies disponible sont 2€, 5€, 10€
 
-![Alt Image](Monnaie1.png)
-![Alt Image](Monnaie2.png)
+![Alt Image](Monnaie1.PNG)
+![Alt Image](Monnaie2.PNG)
 
 <u>Résolution :</u>
 ```ts
@@ -1321,11 +1321,8 @@ public class Change {
         if(rest % 2 == 0){
             change.coin2 = rest / 2 ;
         }
-
         return change;
     }
-
-
     @Override
     public String toString(){
         return "[coin2="+coin2+"; bill5="+bill5+"; bill10="+bill10+"]";
