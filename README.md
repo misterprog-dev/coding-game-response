@@ -1,6 +1,6 @@
 # Résolution problèmes tests techniques
 
-### I. Trouver la Paire idéale
+### I. Trouver la Paire idéale---Mamadou
 
 <u>Problème :</u>
 ```
