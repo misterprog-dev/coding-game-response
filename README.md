@@ -1366,7 +1366,7 @@ Ecrire un programme qui retourne les entiers de 1 à 100. A prendre en compte: P
 
 Exemple: 12Fizz4BuzzFizz78FizzBuzz......Buzz
 Plus info:[Lien]([https://codingdojo.org/fr/kata/FizzBuzz](https://codingdojo.org/fr/kata/FizzBuzz/))
-![Alt Image](Monnaie1.PNG)
+![Alt Image](https://codingdojo.org/fr/kata/FizzBuzz/)
 
 ```
 <br/>
