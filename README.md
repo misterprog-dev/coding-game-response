@@ -1,6 +1,6 @@
 # Résolution problèmes tests techniques
 
-### I. Trouver la Paire idéale---Mamadou
+### I. Trouver la Paire idéale
 
 <u>Problème :</u>
 ```
@@ -1274,4 +1274,62 @@ function solve(protonsStart: number, neutronsStart: number, protonsTarget: numbe
 
     return actions;
 }
+```
+### XXII. La monnaie à la caisse, les monnaies disponible sont 2€, 5€, 10€
+
+![Alt Image](Monnaie1.png)
+![Alt Image](Monnaie2.png)
+
+<u>Résolution :</u>
+```ts
+public class Change {
+
+    private long coin2 ;
+    private long bill5;
+    private long bill10 ;
+
+    public Change(){
+        coin2 = 0;
+        bill5 = 0;
+        bill10 = 0;
+    }
+    public static Change optimalChange(long s){
+
+        if(s < 2 || Long.MAX_VALUE< s) {
+            return null;
+        }
+        Change change = new Change();
+        long rest = s;
+        change.bill10 = s / 10;
+        rest = s % 10;
+
+        if(rest < 5 && rest %2 != 0){
+            if(change.bill10 > 0){
+                change.bill10--;
+                rest = rest + 10;
+            }
+        }
+        change.bill5 = rest / 5;
+        rest = rest % 5;
+
+        if(rest != 0 && rest % 2 != 0){
+            if(change.bill5 > 0 ){
+                change.bill5--;
+                rest = rest + 5;
+            }
+        }
+        if(rest % 2 == 0){
+            change.coin2 = rest / 2 ;
+        }
+
+        return change;
+    }
+
+
+    @Override
+    public String toString(){
+        return "[coin2="+coin2+"; bill5="+bill5+"; bill10="+bill10+"]";
+    }
+}
+
 ```
