@@ -45,12 +45,41 @@ que l'on appelle des duodigits :
 2- 102 : n'est pas un duodigit puisque ses chiffres ; 1 et 0 et 2 sont trois chiffres différents
 ```
 
-<u>Résolution :</u>
+<u>Résolution 1 :</u>
 
 ```java
 public boolean isDuoDigit(long number) {
   String numberString = String.valueOf(Math.abs(number));
   return (int) numberString.chars().distinct().count() <= 2;
+}
+```
+
+<br/>
+
+<u>Résolution 2 :</u>
+
+```java
+public class DuoDigit {
+
+    public static boolean isDuoDigit(int number){
+
+        number  = Math.abs(number);
+
+        if (number < 10) {
+            return false;
+        }   
+        Set<Character> digitSet = new HashSet<>();
+        
+        for (char digit : String.valueOf(number).toCharArray()) {
+            digitSet.add(digit);
+            if (digitSet.size() > 2) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
 }
 ```
 
@@ -1328,5 +1357,46 @@ public class Change {
         return "[coin2="+coin2+"; bill5="+bill5+"; bill10="+bill10+"]";
     }
 }
+```
+### XXIII. FizzBuzz
+<u>Problème :</u>
+```
+Règles
+Ecrire un programme qui retourne les entiers de 1 à 100. A prendre en compte: Pour les multiples de 3, remplacez le nombre par "Fizz". Pour les multiples de 5, remplacez le nombre par "Buzz". Un nombre multiple de 15, remplacez le nombre par "FizzBuzz".
+
+Exemple: 12Fizz4BuzzFizz78FizzBuzz......Buzz
+Plus info:[Lien](https://example.com/ "FizzBuzz")
 
 ```
+<br/>
+
+<u>Résolution :</u>
+```ts
+public class FizzBuzz {
+
+    public static String evaluate(int min, int max){
+        return evaluateNumbers(min, max);
+    }
+
+    private static String evaluateNumbers(int min, int max) {
+        String result = evaluateNumber(min);
+        if(min > max )
+            result += evaluateNumber(max);
+        while(min < max){
+            result += evaluateNumber(++min);
+        }
+        return result;
+    }
+
+    private static String evaluateNumber(int number) {
+        if(number % 15 == 0)
+            return  "FizzBuzz";
+        if(number % 3 == 0)
+            return  "Fizz";
+        if(number % 5 == 0)
+            return  "Buzz";
+        return String.valueOf(number);
+    }
+}
+```
+
