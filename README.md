@@ -45,12 +45,41 @@ que l'on appelle des duodigits :
 2- 102 : n'est pas un duodigit puisque ses chiffres ; 1 et 0 et 2 sont trois chiffres différents
 ```
 
-<u>Résolution :</u>
+<u>Résolution 1 :</u>
 
 ```java
 public boolean isDuoDigit(long number) {
   String numberString = String.valueOf(Math.abs(number));
   return (int) numberString.chars().distinct().count() <= 2;
+}
+```
+
+<br/>
+
+<u>Résolution 2 :</u>
+
+```java
+public class DuoDigit {
+
+    public static boolean isDuoDigit(int number){
+
+        number  = Math.abs(number);
+
+        if (number < 10) {
+            return false;
+        }   
+        Set<Character> digitSet = new HashSet<>();
+        
+        for (char digit : String.valueOf(number).toCharArray()) {
+            digitSet.add(digit);
+            if (digitSet.size() > 2) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
 }
 ```
 
@@ -1275,3 +1304,99 @@ function solve(protonsStart: number, neutronsStart: number, protonsTarget: numbe
     return actions;
 }
 ```
+### XXII. La monnaie à la caisse, les monnaies disponible sont 2€, 5€, 10€
+
+![Alt Image](Monnaie1.PNG)
+![Alt Image](Monnaie2.PNG)
+
+<u>Résolution :</u>
+```ts
+public class Change {
+
+    private long coin2 ;
+    private long bill5;
+    private long bill10 ;
+
+    public Change(){
+        coin2 = 0;
+        bill5 = 0;
+        bill10 = 0;
+    }
+    public static Change optimalChange(long s){
+
+        if(s < 2 || Long.MAX_VALUE< s) {
+            return null;
+        }
+        Change change = new Change();
+        long rest = s;
+        change.bill10 = s / 10;
+        rest = s % 10;
+
+        if(rest < 5 && rest %2 != 0){
+            if(change.bill10 > 0){
+                change.bill10--;
+                rest = rest + 10;
+            }
+        }
+        change.bill5 = rest / 5;
+        rest = rest % 5;
+
+        if(rest != 0 && rest % 2 != 0){
+            if(change.bill5 > 0 ){
+                change.bill5--;
+                rest = rest + 5;
+            }
+        }
+        if(rest % 2 == 0){
+            change.coin2 = rest / 2 ;
+        }
+        return change;
+    }
+    @Override
+    public String toString(){
+        return "[coin2="+coin2+"; bill5="+bill5+"; bill10="+bill10+"]";
+    }
+}
+```
+### XXIII. FizzBuzz
+<u>Problème :</u>
+```
+Règles
+Ecrire un programme qui retourne les entiers de 1 à 100. A prendre en compte: Pour les multiples de 3, remplacez le nombre par "Fizz". Pour les multiples de 5, remplacez le nombre par "Buzz". Un nombre multiple de 15, remplacez le nombre par "FizzBuzz".
+
+Exemple: 12Fizz4BuzzFizz78FizzBuzz......Buzz
+Plus info:[FizzBuzz](https://codingdojo.org/fr/kata/FizzBuzz/)
+
+```
+<br/>
+
+<u>Résolution :</u>
+```ts
+public class FizzBuzz {
+
+    public static String evaluate(int min, int max){
+        return evaluateNumbers(min, max);
+    }
+
+    private static String evaluateNumbers(int min, int max) {
+        String result = evaluateNumber(min);
+        if(min > max )
+            result += evaluateNumber(max);
+        while(min < max){
+            result += evaluateNumber(++min);
+        }
+        return result;
+    }
+
+    private static String evaluateNumber(int number) {
+        if(number % 15 == 0)
+            return  "FizzBuzz";
+        if(number % 3 == 0)
+            return  "Fizz";
+        if(number % 5 == 0)
+            return  "Buzz";
+        return String.valueOf(number);
+    }
+}
+```
+
